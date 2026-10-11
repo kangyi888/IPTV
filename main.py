@@ -6,11 +6,13 @@ from datetime import datetime, timedelta, timezone
 import opencc
 
 # ===================== 全局核心配置 =====================
-# 指定按TXT文件内顺序排列的分类，其余自动字典序排序，按需增删ÏÒ
-ORDERED_CHANNEL_TYPES = ["央视频道", "卫视频道", "港澳台", "电影", "电视剧", "埋堆堆", "咪咕直播"]
+# 仅保留需要输出的4个分类
+OUTPUT_CHANNEL_TYPES = ["央视频道", "卫视频道", "广东频道", "港澳台"]
+# 指定按TXT文件内顺序排列的分类
+ORDERED_CHANNEL_TYPES = ["央视频道", "卫视频道", "港澳台"]
 # 频道名称清理字符集
 REMOVAL_LIST = [
-    "「IPV4」", "「IPV6」", "[ipv6]", "[ipv4]", "_电信", "电信", "（HD）", "[超清]","高清", "超清", "-HD", "(HK)", "AKtv", "@", 
+    "「IPV4」", "「IPV6」", "[ipv6]", "[ipv4]", "_电信", "电信", "（HD）", "[超清]","高清", "超清", "-HD", "(HK)", "AKtv", "@",
     "IPV6", "🎞️", "🎦","[BD]", "[VGA]", "[HD]", "[SD]", "(1080p)", "(720p)", "(480p)", "HD", "｜", "NewTV-", "New_"
 ]
 # 网络请求配置
@@ -22,7 +24,7 @@ RESPONSE_TIME_THRESHOLD = 2000
 TVG_URL = "https://ghfast.top/https://github.com/CCSH/IPTV/raw/refs/heads/main/e.xml.gz"
 LOGO_URL_TPL = "https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/{}.png"
 # 所有单个频道最多保留的有效源数量，可直接修改数字（-1=无限制）
-SINGLE_CHANNEL_MAX_COUNT = 20  
+SINGLE_CHANNEL_MAX_COUNT = 20
 
 # ===================== 通用工具函数 =====================
 def get_project_dirs() -> dict:
@@ -115,14 +117,14 @@ def load_corrections(corrections_path: str) -> dict:
 def clean_channel_name(name: str) -> str:
     if not name:
         return ""
-        
+
     # 全角空格转半角
     name = name.replace("　", " ")
     # 删除复制粘贴带来的零宽隐形空白
     name = re.sub(r'[\u200b\u200c\u200d\u200e\u200f]', '', name)
     # 删除所有半角空格
     name = name.replace(" ", "")
-    
+
     for item in REMOVAL_LIST:
         name = name.replace(item, "")
     name = name.replace("CCTV-", "CCTV")
@@ -168,7 +170,6 @@ def load_channel_dictionaries(main_dir: str, local_dir: str) -> tuple[dict, dict
     for chn_type, filename in main_channels.items():
         file_path = os.path.join(main_dir, filename)
         raw_lines = read_txt(file_path)
-        # 关键：和源频道执行完全一样的清洗流程，保证名称一致
         clean_lines = []
         for name in raw_lines:
             n = traditional_to_simplified(name)
@@ -201,9 +202,7 @@ class ChannelClassifier:
         self.other_lines = []
         self.other_urls = set()
         self.all_urls = {}
-        # === 全局单频道限流 新增：单频道计数字典 ===
-        self.single_chn_count = {}  # key: 频道名(如CCTV1), value: 已添加源数量
-        # 初始化分类数据
+        self.single_chn_count = {}
         for chn_type in list(main_dict.keys()) + list(local_dict.keys()):
             self.channel_data[chn_type] = []
             self.all_urls[chn_type] = set()
@@ -213,13 +212,10 @@ class ChannelClassifier:
             return True
         return False
 
-    # === 全局单频道限流 ===
     def is_single_chn_limit(self, channel_name: str) -> bool:
         if SINGLE_CHANNEL_MAX_COUNT == -1:
-            return False  # -1表示无限制
-        # 获取该频道已添加数量，默认0
+            return False
         current_count = self.single_chn_count.get(channel_name, 0)
-        # 达到上限返回True，否则False
         if current_count >= SINGLE_CHANNEL_MAX_COUNT:
             return True
         return False
@@ -227,7 +223,6 @@ class ChannelClassifier:
     def add_channel_line(self, chn_type: str, line: str, url: str):
         self.channel_data[chn_type].append(line)
         self.all_urls[chn_type].add(url)
-        # === 全局单频道限流 新增：更新单频道计数 ===
         channel_name = line.split(',')[0].strip()
         self.single_chn_count[channel_name] = self.single_chn_count.get(channel_name, 0) + 1
 
@@ -236,12 +231,9 @@ class ChannelClassifier:
             self.other_urls.add(url)
             self.other_lines.append(line)
 
-    # === 全局单频道限流 ===
     def classify(self, channel_name: str, channel_url: str, line: str):
-        # 先判断：黑名单/空URL → 跳过；单频道达上限 → 跳过
         if channel_url in self.blacklist or not channel_url or self.is_single_chn_limit(channel_name):
             return
-        # 原有分类逻辑不变
         for chn_type, chn_names in self.main_dict.items():
             if channel_name in chn_names and not self.check_url_exist(chn_type, channel_url):
                 self.add_channel_line(chn_type, line, channel_url)
@@ -316,19 +308,17 @@ def process_single_line(line: str, classifier: ChannelClassifier, corrections: d
         channel_name, channel_address = line.split(',', 1)
     except ValueError:
         return
-    # 频道名标准化（简繁转换→清理→纠错）
     channel_name = traditional_to_simplified(channel_name)
     channel_name = clean_channel_name(channel_name)
     channel_name = correct_channel_name(channel_name, corrections)
     channel_address = clean_url(channel_address)
     new_line = f"{channel_name},{channel_address}"
-    # 传入标准化后的频道名做分类（保证计数统一）
     classifier.classify(channel_name, channel_address, new_line)
 
 def sort_channel_data(channel_data: list, chn_type: str, cfg_list: list) -> list:
     if not channel_data:
         return channel_data
-    
+
     if chn_type in ORDERED_CHANNEL_TYPES:
         cfg_index_map = {cfg_name: idx for idx, cfg_name in enumerate(cfg_list)}
         def _ordered_key(line):
@@ -342,42 +332,25 @@ def sort_channel_data(channel_data: list, chn_type: str, cfg_list: list) -> list
             return pure_name if pure_name else name
         return sorted(channel_data, key=_dict_key)
 
-def generate_live_text(classifier: ChannelClassifier, main_dict: dict) -> tuple[list, list]:
+def generate_live_text(classifier: ChannelClassifier, main_dict: dict, local_dict: dict) -> list:
     bj_time = datetime.now(timezone.utc) + timedelta(hours=8)
     formatted_time = bj_time.strftime("%Y%m%d %H:%M")
     version = f"{formatted_time},http://ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221226537/index.m3u8"
     header = ["更新时间,#genre#", version, '\n']
 
-    # 生成lite精简版
-    lite_lines = header.copy()
-    lite_sort_types = [
-        "央视频道", "卫视频道", "港澳台", "电影", "电视剧", "综艺频道",
-        "NewTV", "iHOT", "体育频道", "咪咕直播", "埋堆堆", "音乐频道", "游戏频道", "解说频道"
-    ]
-    for chn_type in lite_sort_types:
+    out_lines = header.copy()
+    # 只输出指定4个分类
+    for chn_type in OUTPUT_CHANNEL_TYPES:
         chn_data = classifier.get_channel_data(chn_type)
-        sorted_data = sort_channel_data(chn_data, chn_type, main_dict[chn_type])
-        lite_lines += [f"{chn_type},#genre#"] + sorted_data + ['\n']
-    lite_lines = lite_lines[:-1] if lite_lines and lite_lines[-1] == '\n' else lite_lines
-
-    # 补全剩余生成full版
-    full_lines = lite_lines.copy() + ['\n']
-    full_other_types = [
-        "儿童频道", "国际台", "纪录片", "戏曲频道", "上海频道", "湖南频道",
-        "湖北频道", "广东频道", "浙江频道", "山东频道", "江苏频道", "安徽频道",
-        "海南频道", "内蒙频道", "辽宁频道", "陕西频道", "山西频道", "云南频道",
-        "北京频道", "重庆频道", "福建频道", "甘肃频道", "广西频道", "贵州频道",
-        "河北频道", "河南频道", "黑龙江频道", "吉林频道", "江西频道", "宁夏频道",
-        "青海频道", "四川频道", "天津频道", "新疆频道", "春晚", "直播中国", "MTV", "收音机频道"
-    ]
-    for chn_type in full_other_types:
-        chn_data = classifier.get_channel_data(chn_type)
-        sort_list = main_dict.get(chn_type, []) or classifier.local_dict.get(chn_type, [])
-        sorted_data = sort_channel_data(chn_data, chn_type, sort_list)
-        full_lines += [f"{chn_type},#genre#"] + sorted_data + ['\n']
-    full_lines = full_lines[:-1] if full_lines and full_lines[-1] == '\n' else full_lines
-
-    return full_lines, lite_lines
+        if chn_type in main_dict:
+            sort_src = main_dict[chn_type]
+        else:
+            sort_src = local_dict.get(chn_type, [])
+        sorted_data = sort_channel_data(chn_data, chn_type, sort_src)
+        out_lines += [f"{chn_type},#genre#"] + sorted_data + ['\n']
+    if out_lines and out_lines[-1] == '\n':
+        out_lines.pop()
+    return out_lines
 
 def make_m3u(txt_file: str, m3u_file: str, tvg_url: str, logo_tpl: str):
     try:
@@ -413,7 +386,7 @@ if __name__ == "__main__":
     timestart = datetime.now()
     print(f"[START] 程序开始执行: {timestart.strftime('%Y%m%d %H:%M:%S')}")
     dirs = get_project_dirs()
-    
+
     blacklist = load_blacklist(dirs["blacklist_auto"], dirs["blacklist_manual"])
     corrections = load_corrections(dirs["corrections_name"])
     main_dict, local_dict = load_channel_dictionaries(dirs["main_channel"], dirs["local_channel"])
@@ -433,13 +406,11 @@ if __name__ == "__main__":
             continue
         parts = line.split(",")
         try:
-            # 移除 'ms' 并去除空格
             time_str = parts[0].replace('ms', '').strip()
-            # 转换为浮点数，空字符串返回无穷大
             resp_time = float(time_str) if time_str else float('inf')
         except (ValueError, IndexError, AttributeError):
             resp_time = float('inf')
-            
+
         if resp_time < RESPONSE_TIME_THRESHOLD:
             process_single_line(",".join(parts[1:]), classifier, corrections)
 
@@ -449,30 +420,20 @@ if __name__ == "__main__":
         if url.startswith("http"):
             process_remote_url(url, classifier, corrections)
 
-    live_full, live_lite = generate_live_text(classifier, main_dict)
-    live_full_path = os.path.join(dirs["root"], "live.txt")
-    live_lite_path = os.path.join(dirs["root"], "live_lite.txt")
-    others_path = os.path.join(dirs["root"], "others.txt")
-    write_txt(live_full_path, live_full)
-    write_txt(live_lite_path, live_lite)
-    write_txt(others_path, classifier.other_lines)
+    live_data = generate_live_text(classifier, main_dict, local_dict)
+    live_txt_path = os.path.join(dirs["root"], "live.txt")
+    write_txt(live_txt_path, live_data)
 
     print(f"[GENERATE] 生成M3U文件")
-    make_m3u(live_full_path, os.path.join(dirs["root"], "live.m3u"), TVG_URL, LOGO_URL_TPL)
-    make_m3u(live_lite_path, os.path.join(dirs["root"], "live_lite.m3u"), TVG_URL, LOGO_URL_TPL)
+    make_m3u(live_txt_path, os.path.join(dirs["root"], "live.m3u"), TVG_URL, LOGO_URL_TPL)
 
     timeend = datetime.now()
     elapsed = timeend - timestart
     minutes, seconds = int(elapsed.total_seconds() // 60), int(elapsed.total_seconds() % 60)
-    blacklist_count = len(blacklist)
-    live_count = len(live_full)
-    others_count = len(classifier.other_lines)
-    
+    live_count = len(live_data)
+
     print("=" * 60)
     print(f"[END] 程序执行完成: {timeend.strftime('%Y%m%d %H:%M:%S')}")
     print(f"[STAT] 执行时间: {minutes} 分 {seconds} 秒")
     print(f"[STAT] live.txt行数: {live_count}")
-    print(f"[STAT] others.txt行数: {others_count}")
     print("=" * 60)
-
-
