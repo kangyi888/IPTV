@@ -7,9 +7,9 @@ import opencc
 
 # ===================== 全局核心配置 =====================
 # 仅保留需要输出的4个分类
-OUTPUT_CHANNEL_TYPES = ["央视频道", "卫视频道", "广东频道", "港澳台"]
+OUTPUT_CHANNEL_TYPES = ["央视频道", "卫视频道", "广东频道", "凤凰频道"]
 # 指定按TXT文件内顺序排列的分类
-ORDERED_CHANNEL_TYPES = ["央视频道", "卫视频道", "港澳台"]
+ORDERED_CHANNEL_TYPES = ["央视频道", "卫视频道", "凤凰频道"]
 # 频道名称清理字符集
 REMOVAL_LIST = [
     "「IPV4」", "「IPV6」", "[ipv6]", "[ipv4]", "_电信", "电信", "（HD）", "[超清]","高清", "超清", "-HD", "(HK)", "AKtv", "@",
@@ -148,7 +148,7 @@ def correct_channel_name(name: str, corrections: dict) -> str:
 def load_channel_dictionaries(main_dir: str, local_dir: str) -> tuple[dict, dict]:
     # 主频道数组
     main_name_list = [
-        "央视频道", "卫视频道", "体育频道", "电影", "电视剧", "港澳台",
+        "央视频道", "卫视频道", "体育频道", "电影", "电视剧", "凤凰频道",
         "国际台", "纪录片", "戏曲频道", "解说频道", "春晚", "NewTV",
         "iHOT", "儿童频道", "综艺频道", "埋堆堆", "音乐频道", "游戏频道",
         "收音机频道", "直播中国", "MTV", "咪咕直播"
