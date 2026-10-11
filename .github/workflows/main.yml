@@ -1,7 +1,8 @@
 name: 'Live Update'
 on:
   schedule:
-    - cron: '0 20 * * *'
+    - cron: '0 22 * * *'
+    - cron: '0 9 * * *'
   workflow_dispatch:
 
 jobs:
