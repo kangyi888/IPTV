@@ -1,12 +1,15 @@
 http://139.224.44.53:1234
 https://gh-proxy.org/github.com/ioptu/migu_video/raw/refs/heads/main/migu.m3u
+http://www.52top.com.cn:678/downloads/migu.txt
+https://gh-proxy.org/https://raw.githubusercontent.com/jn950/live/main/tv/holive.m3u
+https://gh-proxy.org/https://github.com/two2025/tv/raw/main/itvlist.txt
+https://gh-proxy.org/https://raw.githubusercontent.com/jn950/live/main/tv/pllive.txt
 https://gh-proxy.org/https://raw.githubusercontent.com/fafa002/yf2025/main/yiyifafa.txt
+http://4.0754.eu.org/xymm
 https://gitee.com/mycaijunhao/123/raw/master/sttv
 http://fy001.szakdoga.net/ky/ky03.txt
-http://4.0754.eu.org/xymm
 https://kakaxi.indevs.in/ipv4.txt
 https://gitee.com/yuan301/tv/raw/master/A/z_v.png
-https://gh-proxy.org/https://github.com/two2025/tv/raw/main/itvlist.txt
 http://www.52top.com.cn:678/downloads/migu.txt
 https://gitee.com/lwr851/live/raw/master/iptv.m3u
 https://gh-proxy.org/raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt
@@ -14,6 +17,5 @@ https://gh-proxy.org/https://raw.githubusercontent.com/doubletree6/tvbox-iptv-su
 https://gh-proxy.org/https://raw.githubusercontent.com/ANOKO1122/iptv-zb-zy/main/output/ipv4/result.txt
 https://gh-proxy.org/https://raw.githubusercontent.com/wgq11/iptv/main/result.txt
 http://rihou.cc:555/gggg.nzk
-https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/assets/test.txt
-https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.txt
-https://raw.githubusercontent.com/kakaxi-1/IPTV/refs/heads/main/ipv4.txt
+https://gh-proxy.org/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/assets/test.txt
+https://gh-proxy.org/https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/result.txt
