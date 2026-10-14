@@ -24,6 +24,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install opencc-python-reimplemented
+          # ==========【新增开始】合并官方黑名单 + 自定义my_blacklist.txt ==========
+      - name: Merge custom blacklist(仅容器内临时覆盖)
+        run: |
+          # 将官方blacklist.txt和自定义my_blacklist.txt合并，覆盖容器内的blacklist.txt
+          cat assets/whitelist-blacklist/blacklist.txt assets/whitelist-blacklist/my_blacklist.txt > assets/whitelist-blacklist/blacklist.txt
+      # ==========【新增结束】==========
       - name: Run Python script
         run: |
           rm -f live.txt live.m3u live_lite.txt live_lite.m3u others.txt
