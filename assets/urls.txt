@@ -1,6 +1,8 @@
 http://139.224.44.53:1234
 https://gh-proxy.org/github.com/ioptu/migu_video/raw/refs/heads/main/migu.m3u
 http://www.52top.com.cn:678/downloads/migu.txt
+https://gitee.com/zwssina/yunduanyuan/raw/master/SB
+https://pastebin.com/raw/RV8wks5K
 https://gh-proxy.org/https://raw.githubusercontent.com/jn950/live/main/tv/holive.m3u
 https://gh-proxy.org/https://github.com/two2025/tv/raw/main/itvlist.txt
 https://gh-proxy.org/https://raw.githubusercontent.com/jn950/live/main/tv/pllive.txt
