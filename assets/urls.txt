@@ -1,6 +1,4 @@
 http://139.224.44.53:1234
-https://gh-proxy.org/github.com/ioptu/migu_video/raw/refs/heads/main/migu.m3u
-http://www.52top.com.cn:678/downloads/migu.txt
 https://gitee.com//hw2837/iptv/raw/master/iptv
 https://gitee.com/zwssina/yunduanyuan/raw/master/SB
 https://pastebin.com/raw/RV8wks5K
@@ -10,6 +8,5 @@ https://gh-proxy.org/https://raw.githubusercontent.com/jn950/live/main/tv/pllive
 https://gh-proxy.org/https://raw.githubusercontent.com/fafa002/yf2025/main/yiyifafa.txt
 http://4.0754.eu.org/xymm
 https://gitee.com/mycaijunhao/123/raw/master/sttv
-http://fy001.szakdoga.net/ky/ky03.txt
 https://gitee.com/lwr851/live/raw/master/iptv.m3u
 https://gh-proxy.org/https://raw.githubusercontent.com/doubletree6/tvbox-iptv-subscription/main/cn_all_tvbox_multi.txt
