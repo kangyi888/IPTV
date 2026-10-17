@@ -5,9 +5,6 @@ https://gitee.com/zwssina/yunduanyuan/raw/master/SB
 https://pastebin.com/raw/RV8wks5K
 https://gh-proxy.org/https://raw.githubusercontent.com/jn950/live/main/tv/holive.m3u
 https://gh-proxy.org/https://github.com/two2025/tv/raw/main/itvlist.txt
-https://gh-proxy.org/https://raw.githubusercontent.com/jn950/live/main/tv/pllive.txt
 https://gh-proxy.org/https://raw.githubusercontent.com/fafa002/yf2025/main/yiyifafa.txt
-http://4.0754.eu.org/xymm
 https://gitee.com/mycaijunhao/123/raw/master/sttv
 https://gitee.com/lwr851/live/raw/master/iptv.m3u
-https://gh-proxy.org/https://raw.githubusercontent.com/doubletree6/tvbox-iptv-subscription/main/cn_all_tvbox_multi.txt
