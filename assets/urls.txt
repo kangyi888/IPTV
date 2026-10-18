@@ -4,6 +4,7 @@ https://gitee.com//hw2837/iptv/raw/master/iptv
 https://gitee.com/zwssina/yunduanyuan/raw/master/SB
 https://pastebin.com/raw/RV8wks5K
 http://4.0754.eu.org/xymm
+http://110.mypressonline.com/cn/st.txt
 https://gh-proxy.org/https://raw.githubusercontent.com/jn950/live/main/tv/holive.m3u
 https://gh-proxy.org/https://github.com/two2025/tv/raw/main/itvlist.txt
 https://gh-proxy.org/https://raw.githubusercontent.com/jn950/live/main/tv/pllive.txt
