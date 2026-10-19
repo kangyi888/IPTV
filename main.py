@@ -337,8 +337,7 @@ def generate_live_text(classifier: ChannelClassifier, main_dict: dict, local_dic
     formatted_time = bj_time.strftime("%Y%m%d %H:%M")
     version = f"{formatted_time},http://ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221226537/index.m3u8"
     header = ["更新时间,#genre#", version, '\n']
-
-    out_lines = header.copy()
+    out_lines = []
     # 只输出指定4个分类
     for chn_type in OUTPUT_CHANNEL_TYPES:
         chn_data = classifier.get_channel_data(chn_type)
@@ -348,9 +347,12 @@ def generate_live_text(classifier: ChannelClassifier, main_dict: dict, local_dic
             sort_src = local_dict.get(chn_type, [])
         sorted_data = sort_channel_data(chn_data, chn_type, sort_src)
         out_lines += [f"{chn_type},#genre#"] + sorted_data + ['\n']
+    # 把更新时间分组追加到末尾
+    out_lines += header
     if out_lines and out_lines[-1] == '\n':
         out_lines.pop()
     return out_lines
+
 
 def make_m3u(txt_file: str, m3u_file: str, tvg_url: str, logo_tpl: str):
     try:
