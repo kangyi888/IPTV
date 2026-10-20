@@ -1,8 +1,8 @@
 name: 'Live Update'
 on:
   schedule:
-    - cron: '0 20 * * *'  # UTC20点 = 北京时间次日04:00
-    - cron: '0 7 * * *'   # UTC7点 = 北京时间15:00
+    - cron: '0 19 * * *'  # UTC19点 = 北京时间次日03:00
+    - cron: '0 5 * * *'   # UTC5点 = 北京时间13:00
   workflow_dispatch:
 jobs:
   run_job:
