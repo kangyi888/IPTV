@@ -3663,33 +3663,21 @@ https://cdn3.indevs.in/stream/tvb/fct4k/
 https://cdn6.cc.cd/163189/hlfct
 #EXTINF:-1  tvg-name="TVB翡翠台" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/TVB翡翠台.png"  group-title="凤凰频道",TVB翡翠台
 https://cdn3.indevs.in/stream/live/hlt/
-#EXTINF:-1  tvg-name="TVB星河" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/TVB星河.png"  group-title="凤凰频道",TVB星河
-http://113.64.94.171:9901/tsfile/live/1005_1.m3u8?key=txiptv&playlive=1&down=1
-#EXTINF:-1  tvg-name="TVB星河" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/TVB星河.png"  group-title="凤凰频道",TVB星河
-https://cdn3.indevs.in/stream/live/tvbxh/
-#EXTINF:-1  tvg-name="TVB星河" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/TVB星河.png"  group-title="凤凰频道",TVB星河
-http://45.192.97.170:8880/play/579.m3u8
-#EXTINF:-1  tvg-name="TVB星河" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/TVB星河.png"  group-title="凤凰频道",TVB星河
-http://45.192.97.170:8880/play/582.m3u8
-#EXTINF:-1  tvg-name="TVB星河" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/TVB星河.png"  group-title="凤凰频道",TVB星河
-http://45.192.97.170:8880/play/595.m3u8
-#EXTINF:-1  tvg-name="TVB星河" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/TVB星河.png"  group-title="凤凰频道",TVB星河
-https://cdn6.cc.cd/163189/tvbxh
-#EXTINF:-1  tvg-name="TVB星河" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/TVB星河.png"  group-title="凤凰频道",TVB星河
-https://10.fast.hidns.vip/163189/xinghe/
-#EXTINF:-1  tvg-name="TVB星河" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/TVB星河.png"  group-title="凤凰频道",TVB星河
-mitv://135.148.104.228:19806/1570668596024c9d9eb9880796228ffe
-#EXTINF:-1  tvg-name="TVB星河" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/TVB星河.png"  group-title="凤凰频道",TVB星河
-http://php.jdshipin.com/TVOD/iptv.php?id=xinghe
-#EXTINF:-1  tvg-name="TVB星河" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/TVB星河.png"  group-title="凤凰频道",TVB星河
-http://cdn3.123.rr.kg/stream/live/tvbxh/
-#EXTINF:-1  tvg-name="TVB星河" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/TVB星河.png"  group-title="凤凰频道",TVB星河
-http://cdn6.123.rr.kg/163189/tvbxh
-#EXTINF:-1  tvg-name="TVB星河" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/TVB星河.png"  group-title="凤凰频道",TVB星河
-http://cdn10.123.rr.kg/163189/xinghe/
-#EXTINF:-1  tvg-name="TVB星河" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/TVB星河.png"  group-title="凤凰频道",TVB星河
-https://cdn.qd.je/163189/xinghe
-#EXTINF:-1  tvg-name="TVB星河" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/TVB星河.png"  group-title="凤凰频道",TVB星河
-http://r.jdshipin.com/Voac4
-#EXTINF:-1  tvg-name="20261022 19:44" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/20261022 19:44.png"  group-title="更新时间",20261022 19:44
+#EXTINF:-1  tvg-name="HOY76" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/HOY76.png"  group-title="凤凰频道",HOY76
+mitv://135.148.104.228:19806/1ab4d9485ff34465a3b5bbd803115e17
+#EXTINF:-1  tvg-name="HOY77" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/HOY77.png"  group-title="凤凰频道",HOY77
+https://fast.hidns.vip/163189/hoy#https://cdn6.cc.cd/163189/hoy
+#EXTINF:-1  tvg-name="HOY77" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/HOY77.png"  group-title="凤凰频道",HOY77
+http://play.wenxiang.cn/live/43dc6fc9b1af5af8ec332f3c88b95e4a.flv
+#EXTINF:-1  tvg-name="HOY77" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/HOY77.png"  group-title="凤凰频道",HOY77
+http://45.192.97.170:8880/play/511.m3u8
+#EXTINF:-1  tvg-name="HOY77" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/HOY77.png"  group-title="凤凰频道",HOY77
+http://iptv.4666888.xyz/iptv2A.php?id=35
+#EXTINF:-1  tvg-name="HOY77" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/HOY77.png"  group-title="凤凰频道",HOY77
+mitv://135.148.104.228:19806/4ab9cfd70752418a883afad3f648c3d7
+#EXTINF:-1  tvg-name="HOY78" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/HOY78.png"  group-title="凤凰频道",HOY78
+http://play.wenxiang.cn/live/cf4526f51988d0ed065b5c3fa4bc925d.flv
+#EXTINF:-1  tvg-name="HOY78" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/HOY78.png"  group-title="凤凰频道",HOY78
+mitv://135.148.104.228:19806/49f0457d4ac5463b9db1b98e9ee59f19
+#EXTINF:-1  tvg-name="20261022 20:04" tvg-logo="https://ghfast.top/https://raw.githubusercontent.com/CCSH/IPTV/refs/heads/main/logo/20261022 20:04.png"  group-title="更新时间",20261022 20:04
 http://ottrrs.hl.chinamobile.com/PLTV/88888888/224/3221226537/index.m3u8
