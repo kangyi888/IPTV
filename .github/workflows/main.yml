@@ -24,20 +24,27 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install opencc-python-reimplemented
-          # ==========【新增开始】合并官方黑名单 + 自定义my_blacklist.txt ==========
       - name: Merge custom blacklist(仅容器内临时覆盖)
         run: |
           # 将官方blacklist.txt和自定义my_blacklist.txt合并，覆盖容器内的blacklist.txt
           cat assets/whitelist-blacklist/blacklist.txt assets/whitelist-blacklist/my_blacklist.txt > assets/whitelist-blacklist/blacklist.txt
-      # ==========【新增结束】==========
+
       - name: Run Python script
         run: |
-          rm -f live.txt live.m3u live_lite.txt live_lite.m3u others.txt
+          rm -f live.txt live.m3u live_lite.txt live_lite.m3u others.txt livemini.txt livemini.m3u
           python main.py
-      # ========== 修改这里：替换原来的git add硬编码，删除continue-on-error ==========
+
+      # ===== 新增：生成精简版 livemini，剔除凤凰分组 =====
+      - name: 生成精简版 livemini.txt（剔除凤凰分组）
+        run: |
+          awk 'BEGIN{flag=1} /凤凰频道,#genre#/{flag=0;next} /,#genre#/{flag=1} flag{print}' live.txt > livemini.txt
+      - name: 生成精简版 livemini.m3u（剔除凤凰分组）
+        run: |
+          awk 'BEGIN{flag=1} /group-title="凤凰频道"/{flag=0;next} /^#EXTM3U/{flag=1;print;next} flag{print}' live.m3u > livemini.m3u
+
       - name: 暂存文件
         run: |
-          FILES=("live.txt" "live.m3u" "live_lite.txt" "live_lite.m3u" "others.txt")
+          FILES=("live.txt" "live.m3u" "live_lite.txt" "live_lite.m3u" "others.txt" "livemini.txt" "livemini.m3u")
           for f in "${FILES[@]}"; do
             if [ -f "$f" ]; then
               git add "$f"
