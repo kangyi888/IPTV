@@ -1,4 +1,3 @@
-http://www.52top.com.cn:678/play/
 http://1.94.31.214/live/live9/dgtv.txt
 https://gh-proxy.org/https://raw.githubusercontent.com/two2025/tv/main/tvlist.txt
 https://gitee.com//hw2837/iptv/raw/master/iptv
@@ -18,3 +17,4 @@ https://gh-proxy.org/https://raw.githubusercontent.com/two2025/tv/main/tvlist.tx
 https://gh-proxy.org/https://raw.githubusercontent.com/wgq11/iptv/main/result.txt
 https://gh-proxy.org/https://raw.githubusercontent.com/yanghanhanyingshi/iptv/main/result.txt
 http://139.224.44.53:1234
+https://gh-proxy.org/https://raw.githubusercontent.com/kimwang1978/collect-txt/main/bbxx365.txt
